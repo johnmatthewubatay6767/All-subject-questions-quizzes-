@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grade 10 Study Hub</title>
+<style>
+:root{--blue:#2563eb;--blue-dark:#1d4ed8;--ink:#172033;--muted:#64748b;--line:#e2e8f0;--bg:#f5f7fb;--white:#fff;--amber:#f59e0b;--green:#059669;--rose:#e11d48}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}
+header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line)}
+.wrap{max-width:1100px;margin:auto;padding:16px}
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.logo{width:44px;height:44px;border-radius:12px;background:var(--blue);color:white;display:grid;place-items:center;font-size:23px}
+h1{font-size:22px;margin:0;font-weight:800;letter-spacing:-.03em}.badges{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.badge{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:700;background:#fff}.badge.blue{color:var(--blue)}.badge.green{color:var(--green);background:#ecfdf5;border-color:#a7f3d0}
+.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid var(--line);border-radius:10px;background:white;padding:8px 12px;font-weight:700;font-size:13px;color:#334155}.btn:hover{background:#f8fafc}.primary{background:var(--blue);color:white;border-color:var(--blue)}.primary:hover{background:var(--blue-dark)}.danger{color:var(--rose);background:#fff1f2;border-color:#fecdd3}.small{padding:5px 9px;font-size:12px}.banner{padding:14px 16px;background:#fffbeb;border-bottom:1px solid #fde68a;color:#78350f}.banner.officer{background:#ecfdf5;border-color:#a7f3d0;color:#065f46}.banner p{margin:0;text-align:center;font-size:13px}
+main{max-width:1100px;margin:auto;padding:18px 16px 40px}.card{background:white;border:1px solid var(--line);border-radius:16px;box-shadow:0 1px 2px #0f172a08}.subjects{padding:14px;margin-bottom:18px}.section-title{font-size:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:#475569;margin:0 0 12px}.subject-list{display:flex;gap:8px;overflow-x:auto;padding-bottom:3px}.subject-btn{white-space:nowrap;border:1px solid var(--line);border-radius:10px;background:white;padding:8px 12px;font-size:13px;font-weight:700}.subject-btn.active{background:var(--blue);color:white;border-color:var(--blue)}
+.layout{display:grid;grid-template-columns:minmax(0,2fr) minmax(270px,1fr);gap:18px}.lesson-card{overflow:hidden}.lesson-head{padding:18px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.lesson-head h2{margin:0;font-size:18px}.meta{font-size:12px;color:var(--muted)}.topic{padding:16px;border-bottom:1px solid #f1f5f9}.topic:last-child{border-bottom:0}.topic-top{display:flex;gap:10px;align-items:flex-start}.topic input[type=checkbox]{margin-top:4px;width:17px;height:17px;accent-color:var(--blue)}.topic-title{font-weight:750}.topic-title.done{text-decoration:line-through;color:#94a3b8}.notes{font-size:13px;color:#475569;white-space:pre-wrap;margin:5px 0 0}.topic-tools{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 0 27px}.tool{border:1px solid var(--line);border-radius:8px;padding:5px 9px;font-size:12px;font-weight:700;background:#f8fafc}.tool.orange{color:#c2410c;background:#fff7ed;border-color:#fed7aa}.tool.red{color:#be123c;background:#fff1f2;border-color:#fecdd3}.side{display:flex;flex-direction:column;gap:18px}.progress-card,.reminder-card{padding:16px}.progress-line{display:flex;justify-content:space-between;font-size:13px;font-weight:800}.bar{height:9px;border-radius:99px;background:#f1f5f9;margin:10px 0;overflow:hidden}.fill{height:100%;width:0;background:var(--blue);transition:width .2s}.subtext{font-size:12px;color:var(--muted)}.reminder{display:flex;gap:9px;align-items:flex-start;padding:10px;border:1px solid var(--line);background:#f8fafc;border-radius:10px;margin-top:9px}.reminder-title{font-size:12px;font-weight:750}.reminder-meta{font-size:11px;color:var(--muted)}.reminder.done .reminder-title{text-decoration:line-through;color:#94a3b8}.reminder-actions{display:flex;gap:6px;margin-left:auto}.empty{padding:26px;text-align:center;color:#94a3b8;font-size:13px}
+dialog{border:0;border-radius:16px;padding:0;width:min(560px,calc(100% - 24px));max-height:90vh;box-shadow:0 25px 80px #0f172a40}dialog::backdrop{background:#0f172a99}.modal-head{background:#1e40af;color:white;padding:15px 18px;display:flex;justify-content:space-between;align-items:center}.modal-head h3{margin:0;font-size:16px}.modal-body{padding:18px;overflow:auto}.close{border:0;background:#ffffff25;color:white;border-radius:8px;width:30px;height:30px;font-weight:800}
+.field{display:flex;flex-direction:column;gap:5px;margin:10px 0}.field label{font-size:12px;font-weight:750;color:#475569}.field input,.field textarea,.field select{width:100%;border:1px solid #cbd5e1;border-radius:9px;padding:9px;background:white}.field textarea{min-height:90px;resize:vertical}.form-actions{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:14px}.slide{background:#0f172a;color:white;border-radius:12px;padding:22px;min-height:190px;white-space:pre-wrap}.slide h4{margin:10px 0;font-size:20px}.slide p{color:#e2e8f0}.slide-nav{display:flex;justify-content:space-between;gap:8px;margin-top:12px}.modal-content{max-height:70vh;overflow:auto}.notice{font-size:12px;color:#64748b;background:#f8fafc;border:1px solid var(--line);padding:10px;border-radius:9px}
+@media(max-width:780px){.layout{grid-template-columns:1fr}.wrap,main{padding:12px}.lesson-head{align-items:flex-start}.side{gap:12px}h1{font-size:20px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="top"><div class="logo">🎓</div><div><h1>Grade 10 Study Hub</h1><div class="subtext">Subjects • Lessons • Presentations • PDFs • Reminders</div></div></div>
+    <div class="badges"><span id="sectionBadge" class="badge blue">Section: St. Dominic</span><span id="roleBadge" class="badge">Student · View-only</span></div>
+    <div class="actions"><button class="btn primary" id="accessBtn">Switch Section / Role</button><button class="btn" id="backupBtn" hidden>Backup / Restore</button></div>
+  </div>
+</header>
+<div id="banner" class="banner"><p id="bannerText">Student View: View lessons and resources, and track your own review progress.</p></div>
+<main>
+  <section class="card subjects"><div class="top" style="justify-content:space-between"><h2 class="section-title">Subjects</h2><button class="btn small primary" id="addSubjectBtn" hidden>+ Add Subject</button></div><div id="subjectList" class="subject-list"></div></section>
+  <div class="layout">
+    <section class="card lesson-card">
+      <div class="lesson-head"><div><h2 id="subjectHeading">Mathematics</h2><div id="subjectMeta" class="meta">0 of 0 lessons reviewed</div></div><div class="actions"><button class="btn small primary" id="addTopicBtn" hidden>+ Add Lesson</button><button class="btn small danger" id="deleteSubjectBtn" hidden>Delete Subject</button></div></div>
+      <div id="topics"></div>
+    </section>
+    <aside class="side">
+      <section class="card progress-card"><h2 class="section-title">My Review Progress</h2><div class="progress-line"><span id="progressPct">0%</span><span id="progressCount">0 / 0</span></div><div class="bar"><div id="progressFill" class="fill"></div></div><div class="subtext">Reviewed topics across all subjects</div></section>
+      <section class="card reminder-card"><div class="top" style="justify-content:space-between"><div><h2 class="section-title" style="margin-bottom:2px">Reminders & Deadlines</h2><div class="subtext">Quizzes, projects & tasks</div></div><button id="addReminderBtn" class="btn small" hidden>+ Add</button></div><div id="reminders"></div></section>
+    </aside>
+  </div>
+</main>
+
+<dialog id="accessDialog"><div class="modal-head"><h3>Section & Role Access</h3><button class="close" data-close="accessDialog">×</button></div><div class="modal-body">
+  <div class="field"><label>Grade 10 Section</label><select id="sectionSelect"></select></div><div class="field" id="customSectionField" hidden><label>New Section Name</label><input id="customSection" placeholder="e.g., St. Lorenzo"></div>
+  <div class="field"><label>Officer PIN (demo mode)</label><input id="pin" type="password" inputmode="numeric" placeholder="Enter PIN"></div><p class="notice">This is a browser-only demo. Officer mode is not secure authentication. For real shared use, you need a server and individual accounts.</p><p id="accessError" style="color:#be123c;font-size:12px"></p>
+  <div class="form-actions"><button class="btn" id="studentEnter">Enter as Student</button><button class="btn primary" id="officerEnter">Officer Login</button></div>
+</div></dialog>
+
+<dialog id="subjectDialog"><div class="modal-head"><h3>Add Subject</h3><button class="close" data-close="subjectDialog">×</button></div><div class="modal-body"><form id="subjectForm"><div class="field"><label>Subject Name</label><input id="subjectName" required placeholder="e.g., Research / ICT"></div><div class="field"><label>Icon / Emoji</label><input id="subjectIcon" value="📘" maxlength="8"></div><div class="form-actions"><button class="btn" type="button" data-close="subjectDialog">Cancel</button><button class="btn primary">Create Subject</button></div></form></div></dialog>
+
+<dialog id="topicDialog"><div class="modal-head"><h3 id="topicDialogTitle">Add Lesson</h3><button class="close" data-close="topicDialog">×</button></div><div class="modal-body"><form id="topicForm"><div class="field"><label>Lesson Title</label><input id="topicTitle" required></div><div class="field"><label>Study Notes / Formulas</label><textarea id="topicNotes" placeholder="Key points, formulas, reviewer notes..."></textarea></div><div class="form-actions"><button class="btn" type="button" data-close="topicDialog">Cancel</button><button class="btn primary">Save Lesson</button></div></form></div></dialog>
+
+<dialog id="reminderDialog"><div class="modal-head"><h3>Add Reminder</h3><button class="close" data-close="reminderDialog">×</button></div><div class="modal-body"><form id="reminderForm"><div class="field"><label>Task / Reminder Title</label><input id="reminderTitle" required placeholder="e.g., Chapter 2 Quiz"></div><div class="field"><label>Subject</label><select id="reminderSubject"></select></div><div class="field"><label>Due Date</label><input id="reminderDate" type="date" required></div><div class="form-actions"><button class="btn" type="button" data-close="reminderDialog">Cancel</button><button class="btn primary">Add Reminder</button></div></form></div></dialog>
+
+<dialog id="resourceDialog"><div class="modal-head"><h3 id="resourceTitle">Lesson Resources</h3><button class="close" data-close="resourceDialog">×</button></div><div class="modal-body modal-content" id="resourceBody"></div></dialog>
+<dialog id="backupDialog"><div class="modal-head"><h3>Section Backup / Restore</h3><button class="close" data-close="backupDialog">×</button></div><div class="modal-body"><p class="subtext">Copy this JSON to back up your section, or paste a previous backup to restore it.</p><div class="field"><textarea id="backupBox" style="min-height:240px;font-family:monospace;font-size:12px"></textarea></div><div class="form-actions"><button class="btn" id="copyBackup">Copy JSON</button><button class="btn primary" id="restoreBackup">Restore JSON</button></div></div></dialog>
+
+<script>
+(() => {
+'use strict';
+const KEY='g10_study_hub_fixed_v2_', DEMO_PIN='1026';
+const defaults=()=>({pin:DEMO_PIN,subjects:[
+{id:'math',name:'Mathematics',icon:'📐',topics:[{id:'m1',title:'Quadratic Equations & Functions',notes:'Standard form: ax² + bx + c = 0. Quadratic formula: x = [-b ± √(b² - 4ac)] / 2a.',done:false,ppt:{type:'slides',slides:[{heading:'Quadratic Functions',body:'A quadratic function has the form f(x) = ax² + bx + c where a ≠ 0.\\nIts graph is a parabola.'},{heading:'Vertex & Axis of Symmetry',body:'Vertex (h,k), where h = -b/(2a).\\nAxis of symmetry: x = h.'}]},pdf:null},{id:'m2',title:'Radical Expressions & Equations',notes:'Simplify radicals by factoring out perfect powers. Check possible extraneous roots.',done:false,ppt:null,pdf:null}]},
+{id:'science',name:'Science',icon:'🔬',topics:[{id:'s1',title:'Electromagnetism, Motors & Generators',notes:'Motors convert electrical energy into mechanical energy. Generators convert mechanical energy into electrical energy through electromagnetic induction.',done:false,ppt:{type:'slides',slides:[{heading:'Electromagnetic Induction',body:'A changing magnetic flux through a conductor induces an electromotive force (EMF).'}, {heading:'Motors vs Generators',body:'Motor: electrical energy → mechanical motion.\\nGenerator: mechanical motion → electrical energy.'}]},pdf:null}]},
+{id:'filipino',name:'Filipino',icon:'📖',topics:[{id:'f1',title:'Pananaliksik & Pagsusuring Pampanitikan',notes:'Suriin ang mensahe, simbolismo, at konteksto ng akda.',done:false,ppt:null,pdf:null}]},
+{id:'english',name:'English',icon:'✍️',topics:[{id:'e1',title:'Argumentative & Literary Analysis Essays',notes:'Use a clear claim and support it with textual evidence.',done:false,ppt:null,pdf:null}]},
+{id:'ap',name:'Araling Panlipunan',icon:'🌏',topics:[{id:'a1',title:'Mga Napapanahong Isyu at Sustainable Development',notes:'Unawain ang ugnayan ng pamamahala, ekonomiya, at kalikasan.',done:false,ppt:null,pdf:null}]},
+{id:'mapeh',name:'MAPEH',icon:'🏃',topics:[{id:'mp1',title:'Fitness Conditioning & Health Topics',notes:'Review class concepts and follow safe activity guidance.',done:false,ppt:null,pdf:null}]},
+{id:'tle',name:'TLE / ICT',icon:'💻',topics:[{id:'t1',title:'Computer Networking & Web Basics',notes:'TCP/IP, DNS, HTTP/HTTPS, routers, and switches.',done:false,ppt:null,pdf:null}]}
+],reminders:[{id:'r1',title:'Physics Quiz — Motors & Generators',subject:'Science',dueDate:'2026-12-02',done:false},{id:'r2',title:'Math Problem Set — Quadratics',subject:'Mathematics',dueDate:'2026-12-04',done:false}]});
+let section=localStorage.getItem(KEY+'section')||'St. Dominic',role='student',data,activeSubject='',editingTopic='';
+const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=prefix=>prefix+'_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7);
+function sectionKey(s){return KEY+'data_'+encodeURIComponent(s)}
+function load(s){try{const d=JSON.parse(localStorage.getItem(sectionKey(s))||'null');if(d&&Array.isArray(d.subjects))return d}catch{}return defaults()}
+function save(){try{localStorage.setItem(sectionKey(section),JSON.stringify(data));return true}catch(e){alert('Could not save. Browser storage may be full. Try using links instead of uploading files, then export a backup.');return false}}
+function current(){return data.subjects.find(s=>s.id===activeSubject)||data.subjects[0]||null}
+function officer(){return role==='officer'}
+function openDialog(id){$(id).showModal()}
+function closeDialog(id){$(id).close()}
+function render(){
+  $('sectionBadge').textContent='Section: '+section;
+  $('roleBadge').textContent=officer()?'Section Officer · Admin':'Student · View-only';
+  $('roleBadge').className='badge '+(officer()?'green':'');
+  $('banner').className='banner'+(officer()?' officer':'');
+  $('bannerText').textContent=officer()?`Officer Edit Mode (${section}): You can manage subjects, lessons, resources, and reminders.`:'Student View: View lessons and resources, and track your own review progress.';
+  ['backupBtn','addSubjectBtn','addTopicBtn','deleteSubjectBtn','addReminderBtn'].forEach(id=>$(id).hidden=!officer());
+  renderSubjects();renderTopics();renderReminders();renderProgress();
+}
+function renderSubjects(){
+  const sub=current();if(sub)activeSubject=sub.id;
+  $('subjectList').innerHTML=data.subjects.length?data.subjects.map(s=>`<button class="subject-btn ${s.id===activeSubject?'active':''}" data-subject="${esc(s.id)}">${esc(s.icon||'📘')} ${esc(s.name)}</button>`).join(''):'<span class="subtext">No subjects yet.</span>';
+  $('subjectList').querySelectorAll('[data-subject]').forEach(b=>b.onclick=()=>{activeSubject=b.dataset.subject;render()});
+}
+function renderTopics(){
+ const s=current();$('subjectHeading').textContent=s?s.name:'No subjects';$('subjectMeta').textContent=s?`${s.topics.filter(t=>t.done).length} of ${s.topics.length} lessons reviewed`:'Create a subject to begin';
+ if(!s||!s.topics.length){$('topics').innerHTML='<div class="empty">No lessons here yet.</div>';return}
+ $('topics').innerHTML=s.topics.map(t=>`<article class="topic"><div class="topic-top"><input type="checkbox" data-done="${esc(t.id)}" ${t.done?'checked':''} aria-label="Mark reviewed"><div style="flex:1;min-width:0"><div class="topic-title ${t.done?'done':''}">${esc(t.title)}</div>${t.notes?`<p class="notes">${esc(t.notes)}</p>`:''}</div>${officer()?`<button class="btn small danger" data-edit="${esc(t.id)}">Edit</button><button class="btn small danger" data-remove-topic="${esc(t.id)}">Remove</button>`:''}</div><div class="topic-tools"><button class="tool orange" data-ppt="${esc(t.id)}">${t.ppt?'📊 View PPT':'📊 '+(officer()?'Add PPT':'')}</button><button class="tool red" data-pdf="${esc(t.id)}">${t.pdf?.src?'📄 View PDF':(officer()?'📄 Add PDF':'')}</button></div></article>`).join('');
+ $('topics').querySelectorAll('[data-done]').forEach(c=>c.onchange=()=>{const t=s.topics.find(t=>t.id===c.dataset.done);if(t){t.done=c.checked;save();render()}});
+ $('topics').querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>editTopic(b.dataset.edit));
+ $('topics').querySelectorAll('[data-remove-topic]').forEach(b=>b.onclick=()=>{if(confirm('Remove this lesson?')){s.topics=s.topics.filter(t=>t.id!==b.dataset.removeTopic);save();render()}});
+ $('topics').querySelectorAll('[data-ppt]').forEach(b=>b.onclick=()=>resource('ppt',b.dataset.ppt));
+ $('topics').querySelectorAll('[data-pdf]').forEach(b=>b.onclick=()=>resource('pdf',b.dataset.pdf));
+}
+function renderProgress(){let total=0,done=0;data.subjects.forEach(s=>s.topics.forEach(t=>{total++;if(t.done)done++}));let pct=total?Math.round(done/total*100):0;$('progressPct').textContent=pct+'%';$('progressCount').textContent=done+' / '+total;$('progressFill').style.width=pct+'%'}
+function renderReminders(){
+ const list=[...(data.reminders||[])].sort((a,b)=>a.dueDate.localeCompare(b.dueDate));
+ $('reminders').innerHTML=list.length?list.map(r=>`<div class="reminder ${r.done?'done':''}"><input type="checkbox" data-remdone="${esc(r.id)}" ${r.done?'checked':''}><div style="min-width:0"><div class="reminder-title">${esc(r.title)}</div><div class="reminder-meta">${esc(r.subject||'General')} · Due ${esc(r.dueDate||'No date')}</div></div>${officer()?`<div class="reminder-actions"><button class="btn small danger" data-remdel="${esc(r.id)}">×</button></div>`:''}</div>`).join(''):'<div class="empty">No reminders yet.</div>';
+ $('reminders').querySelectorAll('[data-remdone]').forEach(c=>c.onchange=()=>{let r=data.reminders.find(r=>r.id===c.dataset.remdone);if(r){r.done=c.checked;save();renderReminders()}});
+ $('reminders').querySelectorAll('[data-remdel]').forEach(b=>b.onclick=()=>{if(confirm('Delete this reminder?')){data.reminders=data.reminders.filter(r=>r.id!==b.dataset.remdel);save();renderReminders()}});
+}
+function addSubject(){if(!officer())return;openDialog('subjectDialog')}
+$('subjectForm').onsubmit=e=>{e.preventDefault();let name=$('subjectName').value.trim();if(!name)return;let s={id:uid('sub'),name,icon:$('subjectIcon').value.trim()||'📘',topics:[]};data.subjects.push(s);activeSubject=s.id;save();e.target.reset();closeDialog('subjectDialog');render()};
+$('addTopicBtn').onclick=()=>{editingTopic='';$('topicDialogTitle').textContent='Add Lesson';$('topicTitle').value='';$('topicNotes').value='';openDialog('topicDialog')};
+function editTopic(id){let t=current().topics.find(t=>t.id===id);if(!t)return;editingTopic=id;$('topicDialogTitle').textContent='Edit Lesson';$('topicTitle').value=t.title;$('topicNotes').value=t.notes||'';openDialog('topicDialog')}
+$('topicForm').onsubmit=e=>{e.preventDefault();if(!officer())return;let s=current(),title=$('topicTitle').value.trim(),notes=$('topicNotes').value.trim();if(!title)return;if(editingTopic){let t=s.topics.find(t=>t.id===editingTopic);if(t){t.title=title;t.notes=notes}}else s.topics.push({id:uid('topic'),title,notes,done:false,ppt:null,pdf:null});save();closeDialog('topicDialog');render()};
+$('deleteSubjectBtn').onclick=()=>{let s=current();if(!officer()||!s)return;if(data.subjects.length<=1){alert('Keep at least one subject.');return}if(confirm(`Delete "${s.name}" and its lessons?`)){data.subjects=data.subjects.filter(x=>x.id!==s.id);activeSubject=data.subjects[0].id;save();render()}};
+$('addReminderBtn').onclick=()=>{if(!officer())return;$('reminderSubject').innerHTML=data.subjects.map(s=>`<option>${esc(s.name)}</option>`).join('');$('reminderDate').value='';openDialog('reminderDialog')};
+$('reminderForm').onsubmit=e=>{e.preventDefault();data.reminders.push({id:uid('rem'),title:$('reminderTitle').value.trim(),subject:$('reminderSubject').value,dueDate:$('reminderDate').value,done:false});save();e.target.reset();closeDialog('reminderDialog');renderReminders()};
+function resource(type,id){
+ let t=current()?.topics.find(t=>t.id===id);if(!t)return;
+ $('resourceTitle').textContent=t.title+' — '+(type==='ppt'?'Presentation':'PDF');
+ let r=t[type],body='';
+ if(type==='ppt'){
+  body=`<p class="subtext">Attach a presentation URL or create quick slides below.</p>`;
+  if(r?.type==='slides'&&r.slides?.length){body+=`<div id="slideBox" class="slide"><div class="subtext" style="color:#fdba74" id="slideCounter"></div><h4 id="slideHeading"></h4><p id="slideBody"></p></div><div class="slide-nav"><button class="btn" id="prevSlide">← Previous</button><button class="btn primary" id="nextSlide">Next →</button></div>`}
+  else if(r?.url){body+=`<p><a href="${esc(r.url)}" target="_blank" rel="noopener" class="btn primary">Open Presentation Link</a></p><p class="notice">Some sites prevent embedding. Open the link in a new tab if the presentation does not display.</p>`}
+  if(officer())body+=`<div class="field"><label>Presentation URL</label><input id="pptUrl" type="url" placeholder="https://..."></div><button class="btn primary" id="savePptLink">Save Link</button><div class="field"><label>Quick Slides (each slide separated by a line containing ---; first line is title)</label><textarea id="quickSlides" placeholder="Slide title&#10;Slide notes/content&#10;---&#10;Next slide title&#10;Content"></textarea></div><button class="btn primary" id="saveSlides">Save Quick Slides</button>${r?'<button class="btn danger" id="removeResource">Remove presentation</button>':''}`;
+ }else{
+  body='<p class="subtext">Attach a PDF URL or upload a small PDF file.</p>';
+  if(r?.src){body+=`<p><a class="btn primary" href="${esc(r.src)}" target="_blank" rel="noopener">Open PDF</a> <span class="subtext">${esc(r.name||'PDF file')}</span></p>`}
+  if(officer())body+=`<div class="field"><label>PDF URL</label><input id="pdfUrl" type="url" placeholder="https://..."></div><button class="btn primary" id="savePdfLink">Save PDF Link</button><div class="field"><label>Upload PDF (maximum 1.5 MB)</label><input id="pdfFile" type="file" accept="application/pdf"></div><button class="btn primary" id="uploadPdf">Save Uploaded PDF</button>${r?'<button class="btn danger" id="removeResource">Remove PDF</button>':''}`;
+ }
+ $('resourceBody').innerHTML=body||'<p class="empty">No resource attached yet.</p>';
+ if(type==='ppt'&&r?.type==='slides'&&r.slides?.length){let idx=0;const draw=()=>{$('slideCounter').textContent=`Slide ${idx+1} of ${r.slides.length}`;$('slideHeading').textContent=r.slides[idx].heading;$('slideBody').textContent=r.slides[idx].body||''};draw();$('prevSlide').onclick=()=>{idx=(idx-1+r.slides.length)%r.slides.length;draw()};$('nextSlide').onclick=()=>{idx=(idx+1)%r.slides.length;draw()}}
+ if(officer()){
+  const save=(val)=>{t[type]=val;save();render();resource(type,id)};
+  if(type==='ppt'){
+   $('savePptLink').onclick=()=>{let url=$('pptUrl').value.trim();if(!validUrl(url)){alert('Enter a valid http or https URL.');return}save({type:'link',url})};
+   $('saveSlides').onclick=()=>{let raw=$('quickSlides').value.trim();if(!raw){alert('Enter slide content first.');return}let slides=raw.split(/\n\s*---\s*\n/).map(block=>{let lines=block.trim().split('\n');return{heading:(lines.shift()||'Slide').trim(),body:lines.join('\n').trim()}});save({type:'slides',slides})}
+  }else{
+   $('savePdfLink').onclick=()=>{let url=$('pdfUrl').value.trim();if(!validUrl(url)){alert('Enter a valid http or https URL.');return}if(url.includes('drive.google.com/file/d/'))url=url.replace(/\/view.*$/,'/preview');save({name:'Linked PDF',src:url})};
+   $('uploadPdf').onclick=()=>{let file=$('pdfFile').files[0];if(!file)return alert('Choose a PDF file.');if(file.type!=='application/pdf')return alert('Only PDF files are allowed.');if(file.size>1.5*1024*1024)return alert('File is larger than 1.5 MB. Use a hosted link instead.');let reader=new FileReader();reader.onload=()=>save({name:file.name,src:reader.result});reader.readAsDataURL(file)}
+  }
+  if($('removeResource'))$('removeResource').onclick=()=>{if(confirm('Remove this resource?'))save(null)};
+ }
+ openDialog('resourceDialog');
+}
+function validUrl(value){try{let u=new URL(value);return u.protocol==='https:'||u.protocol==='http:'}catch{return false}}
+$('accessBtn').onclick=()=>{
+ let sections=JSON.parse(localStorage.getItem(KEY+'sections')||'["St. Dominic","St. Thomas","St. Francis","St. Augustine"]');if(!sections.includes(section))sections.unshift(section);
+ $('sectionSelect').innerHTML=sections.map(s=>`<option value="${esc(s)}" ${s===section?'selected':''}>${esc(s)}</option>`).join('')+'<option value="__new__">+ Create New Section...</option>';
+ $('customSectionField').hidden=true;$('customSection').value='';$('pin').value='';$('accessError').textContent='';openDialog('accessDialog')
+};
+$('sectionSelect').onchange=()=>{$('customSectionField').hidden=$('sectionSelect').value!=='__new__'};
+function resolveSection(){let v=$('sectionSelect').value;if(v==='__new__'){v=$('customSection').value.trim();if(!v)return null;let list=JSON.parse(localStorage.getItem(KEY+'sections')||'[]');if(!list.includes(v))list.push(v);localStorage.setItem(KEY+'sections',JSON.stringify(list))}return v}
+function switchTo(s,r){section=s;role=r;data=load(section);activeSubject=data.subjects[0]?.id||'';localStorage.setItem(KEY+'section',section);render();closeDialog('accessDialog')}
+$('studentEnter').onclick=()=>{let s=resolveSection();if(!s){$('accessError').textContent='Enter a section name.';return}switchTo(s,'student')};
+$('officerEnter').onclick=()=>{let s=resolveSection();if(!s){$('accessError').textContent='Enter a section name.';return}let candidate=load(s);if($('pin').value!==candidate.pin){$('accessError').textContent='Incorrect PIN. Demo PIN is 1026.';return}switchTo(s,'officer')};
+$('backupBtn').onclick=()=>{$('backupBox').value=JSON.stringify(data,null,2);openDialog('backupDialog')};
+$('copyBackup').onclick=async()=>{try{await navigator.clipboard.writeText($('backupBox').value);alert('Backup JSON copied.')}catch{$('backupBox').select();alert('Select and copy the JSON text.')}};
+$('restoreBackup').onclick=()=>{if(!officer())return;try{let p=JSON.parse($('backupBox').value);if(!Array.isArray(p.subjects))throw Error('Missing subjects array');data={pin:p.pin||DEMO_PIN,subjects:p.subjects,reminders:Array.isArray(p.reminders)?p.reminders:[]};activeSubject=data.subjects[0]?.id||'';save();closeDialog('backupDialog');render();alert('Backup restored.')}catch(e){alert('Invalid backup JSON: '+e.message)}};
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>closeDialog(b.dataset.close));
+document.querySelectorAll('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d)d.close()}));
+$('accessDialog').addEventListener('close',()=>{});
+data=load(section);activeSubject=data.subjects[0]?.id||'';render();
+})();
+</script>
+</body>
+</html>
